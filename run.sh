@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-rm ./output/top_cost_drug.txt
+sed -i '$ d' ./output/top_cost_drug.txt
 file_length=`wc -l <./input/itcont.txt`						## Determine how big the input data is
 acceptable_range=1000000							## Depending on the RAM acceptible data range is determined 
 if [ $file_length -lt $acceptable_range ]					## If the input file is small use python directly  

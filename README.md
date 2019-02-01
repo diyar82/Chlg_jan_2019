@@ -26,13 +26,22 @@ Each line of this file contain these fields:
 
 # Approach
 
-1.	The Run function is Linux/Bash
-2.	The Run function looks in to the input file. If the input file was short, Bash will direct it to Python3 pharmacy_counting.py directly
-3.	If the input file was long, Bash will first sort the data according to drug name. Though sorting is costy (Varies between nlogn to n^2). It is way more effecient to sort at the start than to look through the document for same drug name. Then each data file is dealt with saparetly by Python long_pharmacy_counting.py
-4. 	The python3 program uses no libraries (No NumPy or Pandas) except for sys to read varible pushed by Linux/bash program.
-5.	The data read and divided into variables and stored in a matrix.
-6.	Though this doesn’t seem to be efficient but it is the only way to compare the data efficiently.
-7.	The total unique prescribers are the total number mines the repeating ones
-8.	The total drug expenditure is the sum of individual expenditures of the array for same drug name
-9.	All data are stored in another matrix to resort it according to the total expenditure
-
+1.	The Run function "Using ./run.sh" makes Linux/bash program run. (Please refer to the flowchart)
+2. 	If the total line number of the Input file itcont.txt < 1M lines the problem can directly be solved by run pharmacy_counting.py     written In Python 3 (go to 10 for details)
+3.	If the input file was long, Bash will first Clean the data to avoid unwanted errors such as having "," in a name or surname in the input file.
+4.	Sort the data according to drug name. Though sorting is costly (Varies between nlogn to n^2). It is way more efficient to sort at the start than to look through the document for same drug name.
+5. 	Divide itcont.txt into smaller files (Example Divide 243M entry to 243 smaller files each with 1M entry) so it does not kill the RAM while reading and splitting lines in Python. (The default is 1M can be changed by changing acceptable_range=1000000 variable)
+6. 	Run python3 long_pharmacy_counting.py and provide the input file count
+7. 	long_pharmacy_counting.py is similar to pharmacy_counting.py except it get multiple sorted files and has multiple output files
+8. 	Bash Concatenates the output files into a single file then sort them according to the highest total drug expenditure 
+9. 	Bash then edit to the final format and heading tas required by the challenge question 
+10. Regarding The python3 program (pharmacy_counting.py, long_pharmacy_counting.py), they use no libraries (No NumPy or Pandas) except for sys to read variable pushed by Linux/bash program. (Please look at the flow chart)
+11.	The pharmacy_counting.py read the data directly from itcont.txt and divide it into variables and stored in a matrix.
+12.	Though this doesn’t seem to be efficient (RAM wise) but it is a fast way to compare the data as the data is small.
+13.	pharmacy_counting.py finds the range where the drug has same name and name the range as repeated_drug_count
+14.	pharmacy_counting.py looks further through the repeated drug range to find the repeated prescribers. The number of repeated prescribers is stored in repeated_prescriber varible
+15.	The number of unique prescribers is the total number of a specific drug being prescribed minus the number of repeated prescribers
+16.	The total amount of money spend on any drug is the sum of all price entries having same drug name.
+17.	The data is stored and pharmacy_counting.py moves on to the next drug name.
+18.	Once the data collected it is sorted according to descending total amount
+19.	The sorted data is stored in a file named top_cost_drug.txt

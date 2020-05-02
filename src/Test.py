@@ -73,14 +73,6 @@ print (" the standard deviation of your total payment for N=20 is " + str(Dev_Ex
 print (" the probability that your total payment is greater than or equal to 160 given N=20 is " + str(Prob_160_Expect))
 
 
-# In[3]:
-
-
-
-
-
-# In[ ]:
-
 
 
 

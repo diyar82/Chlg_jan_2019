@@ -9,9 +9,7 @@ from itertools import permutations
 ##############################################
 ### N = 10 , 10! = ‭3,628,800‬ , Solvable analytically
 ##############################################
-
 ### Since every configuration is equiprobable every configuration is counted
-
 ##############################################
 l = list(permutations(range(1, 11))) 
 total_gt_44=0
@@ -25,16 +23,12 @@ for i in range(len(l)):
     newarry.append(sum)
     if sum > 44:
         total_gt_44+=1
-print (" the mean of your total payment for N=10 is "+ str(np.mean(newarry)))
-print (" the standard deviation of your total payment for N=10 is " + str(np.std(newarry)))
-print (" the probability that your total payment is greater than or equal to 45 for N=10 " + str(total_gt_44/len(newarry)))
+
 l = None
 ##############################################
 ### N = 20 , 20! = ‭2,432,902,008,176,640,000‬ , Not Solvable analytically
 ##############################################
-
 ### 100M samples are taken to make enough data to make an educated quess 
-
 ##############################################
 Payments= []
 Deviations= []
@@ -68,11 +62,22 @@ Pay_Expect= np.mean(Payments)
 Dev_Expect= np.mean(Deviations)
 Prob_160_Expect = np.mean(Prob_160)
 
+f= open("./output/top_cost_drug.txt","w+")      	## Writing the data to output File
+print (" the mean of your total payment for N=10 is "+ str(np.mean(newarry)))
+print (" the standard deviation of your total payment for N=10 is " + str(np.std(newarry)))
+print (" the probability that your total payment is greater than or equal to 45 for N=10 " + str(total_gt_44/len(newarry)))
+
 print (" the mean of your total payment for N=20 is "+ str(Pay_Expect))
 print (" the standard deviation of your total payment for N=20 is " + str(Dev_Expect))
 print (" the probability that your total payment is greater than or equal to 160 given N=20 is " + str(Prob_160_Expect))
 
+print (" the mean of your total payment for N=10 is "+ str(np.mean(newarry)), file=f)
+print (" the standard deviation of your total payment for N=10 is " + str(np.std(newarry)), file=f)
+print (" the probability that your total payment is greater than or equal to 45 for N=10 " + str(total_gt_44/len(newarry)), file=f)
 
+print (" the mean of your total payment for N=20 is "+ str(Pay_Expect), file=f)
+print (" the standard deviation of your total payment for N=20 is " + str(Dev_Expect), file=f)
+print (" the probability that your total payment is greater than or equal to 160 given N=20 is " + str(Prob_160_Expect), file=f)
 
-
+f.close()                                               		##
 

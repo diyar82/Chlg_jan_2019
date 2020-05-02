@@ -62,7 +62,7 @@ Pay_Expect= np.mean(Payments)
 Dev_Expect= np.mean(Deviations)
 Prob_160_Expect = np.mean(Prob_160)
 
-f= open("./output/top_cost_drug.txt","w+")      	## Writing the data to output File
+f= open("./output/Expected_pay.txt","w+")      	## Writing the data to output File
 print (" the mean of your total payment for N=10 is "+ str(np.mean(newarry)))
 print (" the standard deviation of your total payment for N=10 is " + str(np.std(newarry)))
 print (" the probability that your total payment is greater than or equal to 45 for N=10 " + str(total_gt_44/len(newarry)))
